@@ -1,5 +1,12 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, supabase
 
+#Supabase Connect
+url = "https://tgwcszwdpjqtjpfpwici.supabase.co"
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnd2NzendkcGpxdGpwZnB3aWNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg0NTMwNTUsImV4cCI6MjAyNDAyOTA1NX0.cjLfWVaFISUk2-DKdfFV1R7Evv-zlqQDBbdVpl29QWo"
+supabase = supabase.create_client(url, key)
+response = supabase.table("furnizori").select("*").execute()
+
+#MAIN FLASK APP
 app = Flask(__name__)
 
 @app.route("/")
